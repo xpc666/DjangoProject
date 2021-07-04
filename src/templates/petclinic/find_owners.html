@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends "./base.html" %}
+
+{% block title %}
+  Find Owner
+{% endblock %}
+
+{% block body_block %}
+  <h1>Find Owners</h1>
+  {% if 'no_owners_found' %}
+    <p>{{ no_owners_found }}</p>
+  {% endif %}
+  <div class="form">
+    <form action="find_owner" method="post">
+    {% csrf_token %}
+    <table>
+      <tr><td><label>Last Name:<label></td>
+          <td>{{ form.as_p }}</td>
+      <tr><td></td>
+      <td><input type="submit" class="btn btn-primary btn-sm" value="Find Owner"/><td>
+      </tr>
+    </table>
+  </form>
+  </div>
+  <div class="content">
+    <br><br>
+    <a href="{% url 'add_owner' %}" class="btn btn-primary" role="button">Add Owner</a>
+  </div>
+{% endblock %}

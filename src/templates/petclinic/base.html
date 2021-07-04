@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} Base title {% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="navbar-nav">
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-brand" href="{% url 'home' %}">HOME</a></li>
+          <li><a class="nav-item nav-link" href="{% url 'find_owner' %}">FIND OWNERS</a></li>
+          <li><a class="nav-item nav-link" href="{% url 'vets_list' %}">VETERINARIANS</a></li>
+          <li><a class="nav-item nav-link" href="#">ERRORS</a></li>
+          <li><a class="nav-item nav-link" href="{% url 'logout' %}">LOGOUT</a></li>
+        </ul>
+        <!-- <a class="navbar-brand" href="#">BRAND</a>
+        <a class="nav-item nav-link" href="#">Admin</a>
+        <a class="nav-item nav-link" href="#">Other</a> -->
+      </div>
+    </nav>
+    <div class="container">
+      {% block body_block %}
+      <!-- Anything outside of this will be inherited if you extend! -->
+        <!-- <h1>Welcome Fantastic Library!</h1> -->
+      {% endblock %}
+    </div>
+    <!-- <a href="books/bookpage">Books</a>
+    <a href="books/publisherpage">Publishers</a> -->
+    {% else %}
+      <p>You are not logged in</p>
+      <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends "./base.html" %}
+
+{% block title %}
+  Owner List
+{% endblock %}
+
+{% block body_block %}
+<h1>Edit Owner</h1>
+<div class="form">
+  <form action="" method="post">
+  {% csrf_token %}
+  <table>
+    {{ form.as_p }}
+
+    <input type="submit" class="btn btn-primary btn-sm" value="Update Owner"/>
+
+  </table>
+</form>
+</div>
+{% endblock %}

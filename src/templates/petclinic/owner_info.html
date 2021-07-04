@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% extends "./base.html" %}
+
+{% block title %}
+  Owner Detail
+{% endblock %}
+
+{% block body_block %}
+  <h1>Owner Information</h1>
+  <div class="container">
+    <table>
+        <tr><th>Name</th><td>{{ owner.first_name }} {{ owner.last_name }}</td></tr>
+        <tr><th>Address</th><td>{{ owner.address }}</td></tr>
+        <tr><th>City</th><td>{{ owner.city }}</td></tr>
+        <tr><th>Telephone</th><td>{{ owner.telephone }}</td></tr>
+    </table>
+  </div>
+  <div class="content">
+    <br><br>
+    <a href="{% url 'edit_owner' owner.id %}" class="btn btn-primary" role="button">Edit Owner</a>
+    <a href="{% url 'add_pet' owner.id %}" class="btn btn-primary" role="button">Add New Pet</a>
+  </div
+  <br><br>
+  <h1>Pets and Visits</h1>
+  <div class="container">
+    <table>
+      {% for pet in owner.pets_set.all %}
+      <tr>
+        <td> 
+          <table>
+            <tr>
+              <th>Name: </th><td>{{ pet.name }}</td>
+            </tr>
+            <tr>
+              <th>Birth Date:</th><td>{{ pet.birth_date }}</td>
+            </tr>
+            <tr>
+              <th>Type:</th><td> {{ pet.type.name }}</td>
+            </tr>
+          </table>
+        </td>
+        <td><table></table></td>
+        <td><table></table></td>
+        <td>
+          <table>
+            <tr>
+              <th>Visit Date</th>
+              <th>Description</th>
+            </tr>
+
+            {% for visit in pet.visits_set.all %}
+            <tr>
+              <td>{{ visit.visit_date }}</td>
+              <td>{{ visit.description }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td><a href="{% url 'edit_pet' pet.id %}" class="btn btn-primary" role="button">Edit Pet</a></td>
+              <td><a href="{% url 'add_visit' pet.id %}" class="btn btn-primary" role="button">Add Visit</a></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

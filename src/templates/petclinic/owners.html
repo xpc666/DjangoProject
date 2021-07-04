@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends "./base.html" %}
+
+{% block title %}
+  Owner List
+{% endblock %}
+
+{% block body_block %}
+  <h1>Owners List </h1>
+  {% if 'owners' %}
+  <table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>Telephone</th>
+    <th>Pets</th>
+  </tr>
+  <!-- {% for key, value in dict.items %}
+  <tr>
+    <td>{{ key.first_name }} {{ key.last_name}}</td>
+    <td>{{ key.address}}</td>
+    <td>{{ key.city}}</td>
+    <td>{{ key.telephone}}</td>
+    <td>{% for p in value %}
+      {{ p }}
+    {% endfor %}
+    </td>
+  </tr>
+  {% endfor %} -->
+    {% for owner in owners %}
+    <tr>
+      <td><a href="{{ owner.get_absolute_url }}">{{ owner.first_name }} {{ owner.last_name}}</a></td>
+      <td>{{ owner.address}}</td>
+      <td>{{ owner.city}}</td>
+      <td>{{ owner.telephone}}</td>
+      <td>
+        {% for pet in owner.pets_set.all %}
+          {{ pet }}
+        {% endfor %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+{% endblock %}

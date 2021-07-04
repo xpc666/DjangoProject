@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends "./base.html" %}
+
+{% block title %}
+  Owner List
+{% endblock %}
+
+{% block body_block %}
+  <h1>VETERINARIANS </h1>
+  {% if 'vets' %}
+  <table>
+  <tr>
+    <th>Name</th>
+    <th>Specialties</th>
+  </tr>
+    {% for vet in vets %}
+    <tr>
+      <td>{{ vet }}</td>
+      <td>
+        {% for specialty in vet.specialties.all %}
+          {{ specialty }}
+        {% endfor %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends "./base.html" %}
+
+{% block title %}
+  Add New Pet
+{% endblock %}
+
+{% block body_block %}
+  <h1>New Pet</h1>
+  <div class="form">
+    <tr>
+      <td>Owner: </td><td>{{ owner.first_name }} {{ owner.last_name }}</td>
+    </tr>
+    <form action="" method="post">
+    {% csrf_token %}
+    <table>
+      {{ form.as_p }}
+      <input type="submit" class="btn btn-primary btn-sm" value="Add Pet"/>
+    </table>
+  </form>
+  </div>
+
+{% endblock %}
